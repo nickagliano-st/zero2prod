@@ -22,4 +22,3 @@ rustup default stable
 - Security
   - Install like: `cargo install cargo-audit`
   - Run with `cargo audit`
-- 
