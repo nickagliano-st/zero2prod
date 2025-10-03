@@ -1,10 +1,10 @@
-use actix_web::HttpResponse;
 use actix_web::web;
+use actix_web::HttpResponse;
 
 #[allow(dead_code)]
 #[derive(serde::Deserialize)]
 pub struct FormData {
-    email: String, 
+    email: String,
     name: String,
 }
 
