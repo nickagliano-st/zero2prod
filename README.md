@@ -22,3 +22,9 @@ rustup default stable
 - Security
   - Install like: `cargo install cargo-audit`
   - Run with `cargo audit`
+
+
+## sqlx
+- `sqlx migrate add create_subscriptions_table` to create a new migration
+- `sqlx migrate run` to migrate
+- `cargo sqlx prepare --workspace -- --all-targets`
