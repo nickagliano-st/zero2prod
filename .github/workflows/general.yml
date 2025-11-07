@@ -46,7 +46,7 @@ jobs:
       # Downloads a copy of the code in your repository before running CI tests
       - name: Check out repository code
         # The uses keyword specifies that this step will run v4 of the actions/checkout action.
-        # This is an action that checks out your repository onto the runner, allowing you to run scripts or other actions against your code (such as build and test tools).
+        # This is an action that checks out your repository onto the runner, allowing you to run bin scripts or other actions against your code (such as build and test tools).
         # You should use the checkout action any time your workflow will run against the repository's code.
         uses: actions/checkout@v4
 
@@ -74,7 +74,7 @@ jobs:
           PGPASSWORD="password" psql -U "postgres" -h "localhost" -c "${GRANT_QUERY}"
 
       - name: Migrate database
-        run: SKIP_DOCKER=true ./scripts/init_db.sh
+        run: SKIP_DOCKER=true ./bin/init_db.sh
 
       - name: Run tests
         run: cargo test
@@ -153,7 +153,7 @@ jobs:
           GRANT_QUERY="ALTER USER ${APP_USER} CREATEDB;"
           PGPASSWORD="password" psql -U "postgres" -h "localhost" -c "${GRANT_QUERY}"
       - name: Migrate database
-        run: SKIP_DOCKER=true ./scripts/init_db.sh
+        run: SKIP_DOCKER=true ./bin/init_db.sh
       - name: Install cargo-llvm-cov
         uses: taiki-e/install-action@cargo-llvm-cov
       - name: Generate code coverage
