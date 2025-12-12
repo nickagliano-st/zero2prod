@@ -1,4 +1,6 @@
 //! tests/health_check.rs
+use secrecy::ExposeSecret;
+use secrecy::Secret;
 use sqlx::{Connection, Executor, PgConnection, PgPool};
 use std::net::TcpListener;
 use std::sync::LazyLock;
@@ -6,8 +8,6 @@ use uuid::Uuid;
 use zero2prod::configuration::{get_configuration, DatabaseSettings};
 use zero2prod::startup::run;
 use zero2prod::telemetry::{get_subscriber, init_subscriber};
-use secrecy::ExposeSecret;
-use secrecy::Secret;
 
 static TRACING: LazyLock<()> = LazyLock::new(|| {
     let default_filter_level = "info".to_string();
@@ -62,9 +62,10 @@ pub async fn configure_database(config: &DatabaseSettings) -> PgPool {
         password: Secret::new("password".to_string()),
         ..config.clone()
     };
-    let mut connection = PgConnection::connect(&maintenance_settings.connection_string().expose_secret())
-        .await
-        .expect("Failed to connect to Postgres");
+    let mut connection =
+        PgConnection::connect(&maintenance_settings.connection_string().expose_secret())
+            .await
+            .expect("Failed to connect to Postgres");
 
     connection
         .execute(format!(r#"CREATE DATABASE "{}";"#, config.database_name).as_str())
