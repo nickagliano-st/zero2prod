@@ -1,2 +1,5 @@
 /target
 notebooks
+.env.prod
+bin/health_check_prod.sh
+bin/update_prod_spec.sh
