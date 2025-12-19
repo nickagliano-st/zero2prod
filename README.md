@@ -37,3 +37,6 @@ rustup default stable
 
 ## Docker commands
 - `docker build --tag zero2prod .`
+
+## advisories check
+- `cargo install cargo-deny`

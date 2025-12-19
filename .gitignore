@@ -3,3 +3,5 @@ notebooks
 .env.prod
 bin/health_check_prod.sh
 bin/update_prod_spec.sh
+bin/migrate_prod_db.sh
+bin/test_subscription_api_prod.sh
